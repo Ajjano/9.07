@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1
+    // (function AmountOfSing(text) {
+    //     document.write(`Lenght: ${text.length}<br>`);
+    //     let letters=0;
+    //     let numbers=0;
+    //     let signs=0;
+    //     for (let i in text){
+    //         if(text[i].match(/[a-z]/i)){
+    //             letters++;
+    //         }else if(text[i].match(/[0-9]/)){
+    //             numbers++;
+    //         }else {
+    //             signs++;
+    //         }
+    //     }
+    //     document.write(`Letters: ${letters}<br>Numbers: ${numbers}<br>Signs: ${signs}`);
+    // }("jlfgj gjfkjgf89 bhf56 hbfh55 fgf66"));
+
+    //2
+    function NumberToString(number) {
+        number=number.split('');
+        let str;
+        switch (parseInt(number[0])){
+            case 1:
+                switch (number[1]){
+                    case 0:
+                        return 'Ten';
+                        break;
+                    case 1:
+                        return 'Eleven';
+                        break;
+                    case 2:
+                        return 'Twelve';
+                        break;
+                    case 3:
+                        return 'Thirteen';
+                        break;
+                    case 4:
+                        return 'Fourteen';
+                        break;
+                    case 5:
+                        return 'Fifteen';
+                        break;
+                    case 6:
+                        return 'Sixteen';
+                        break;
+                    case 7:
+                        return 'Seventeen';
+                        break;
+                    case 8:
+                        return 'Eighteen';
+                        break;
+                    case 9:
+                        return 'Nineteen';
+                        break;
+                }
+                break;
+            case 2:
+                if(number[1]==0){
+                    return 'Twenty;'
+                }
+                str='Twenty ';
+                break;
+            case 3:
+                if(number[1]==0){
+                    return 'Thirty;'
+                }
+                str='Thirty ';
+                break;
+            case 4:
+                if(number[1]==0){
+                    return 'Forty;'
+                }
+                str='Forty ';
+                break;
+            case 5:
+                if(number[1]==0){
+                    return 'Fifty;'
+                }
+                str='Fifty ';
+                break;
+            case 6:
+                if(number[1]==0){
+                    return 'Sixty;'
+                }
+                str='Sixty ';
+                break;
+            case 7:
+                if(number[1]==0){
+                    return 'Seventy;'
+                }
+                str='Seventy ';
+                break;
+            case 8:
+                if(number[1]==0){
+                    return 'Eighty;'
+                }
+                str='Eighty ';
+                break;
+            case 9:
+                if(number[1]==0){
+                    return 'Ninety;'
+                }
+                str='Ninety ';
+                break;
+        }
+        switch (parseInt(number[1])){
+            case 1:
+                str+='one';
+                break;
+            case 2:
+                str+='two';
+                break;
+            case 3:
+                str+='three';
+                break;
+            case 4:
+                str+='four';
+                break;
+            case 5:
+                str+='five';
+                break;
+            case 6:
+                str+='six';
+                break;
+            case 7:
+                str+='seven';
+                break;
+            case 8:
+                str+='eight';
+                break;
+            case 9:
+                str+='nine';
+                break;
+        }
+
+        return str;
+    }
+
+    // document.write(NumberToString('39'));
+
+    //3
+    function LowToUpper(text) {
+        let changeTxt='';
+        for (let i in text){
+                    if(text[i].match(/[a-z]/)){
+                        changeTxt+=text[i].toUpperCase();
+                    }else if(text[i].match(/[A-Z]/)){
+                        changeTxt+=text[i].toLowerCase();
+                    }
+                    else if(text[i].match(/[0-9]/)){
+                        changeTxt+='_';
+                    }
+                    else{
+                        changeTxt+=text[i];
+                    }
+                }
+        document.write(changeTxt);
+    }
+
+    // LowToUpper('JooJg GGG5555 H hjgg');
+
+    //4
+    function StyleToCamelCase(style) {
+        let index=style.indexOf('-');
+        return style.substr(0,index)+style[index+1].toUpperCase()+style.substr(index+2);
+    }
+
+    // document.write(StyleToCamelCase('font-size'));
+
+    //5
+    function ToAbr(text) {
+        let abr=text[0].toUpperCase();
+        let index=0;
+        while(index!=-1){
+            index=text.indexOf(' ', index+1);
+            if(index!=-1){
+                abr+=text[index+1].toUpperCase();
+            }
+        }
+        return abr;
+    }
+    // document.write(ToAbr('cascading style sheets'));
+
+    //6
+
+
+</script>
+</body>
+</html>

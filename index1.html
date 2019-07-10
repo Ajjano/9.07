@@ -37,45 +37,45 @@
         print(){
             let strDate='';
             switch (this.getMonth()){
-                case 1:
+                case 0:
                     strDate+='January';
                     break;
-                case 2:
+                case 1:
                     strDate+='February';
                     break;
-                case 3:
+                case 2:
                     strDate+='March';
                     break;
-                case 4:
+                case 3:
                     strDate+='April';
                     break;
-                case 5:
+                case 4:
                     strDate+='May';
                     break;
-                case 6:
+                case 5:
                     strDate+='June';
                     break;
-                case 7:
+                case 6:
                     strDate+='July';
                     break;
-                case 8:
+                case 7:
                     strDate+='August';
                     break;
-                case 9:
+                case 8:
                     strDate+='September';
                     break;
-                case 10:
+                case 9:
                     strDate+='October';
                     break;
-                case 11:
+                case 10:
                     strDate+='November';
                     break;
-                case 12:
+                case 11:
                     strDate+='December';
                     break;
             }
             strDate+=' ';
-            switch (this.getDay()){
+            switch (this.getDate()){
                 case 1:
                    strDate+= 'first';
                    break;
