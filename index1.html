@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1
+    class Marker{
+        constructor(color, value){
+            this.color=color;
+            this.value=value;
+        }
+        print(text){
+            if(text.length*0.5<this.value){
+                document.write(`<span style="color:${this.color}">${text}</span><br>`);
+                this.value-=(text.length*0.5);
+            }
+            else {
+                text.split('');
+                let sign=parseInt(this.value/0.5);
+                document.write(`<span style="color:${this.color}">${text.substr(0, sign)}</span><br>`);
+                clearInterval(intervalId);
+            }
+        }
+    }
+
+    let printext=new Marker('blue', 100);
+   // let intervalId=setInterval(()=>printext.print('cats cats more cats'),1000);
+
+    //2
+    class ExtendedDate extends Date{
+        constructor(){
+            super();
+        }
+        print(){
+            let strDate='';
+            switch (this.getMonth()){
+                case 1:
+                    strDate+='January';
+                    break;
+                case 2:
+                    strDate+='February';
+                    break;
+                case 3:
+                    strDate+='March';
+                    break;
+                case 4:
+                    strDate+='April';
+                    break;
+                case 5:
+                    strDate+='May';
+                    break;
+                case 6:
+                    strDate+='June';
+                    break;
+                case 7:
+                    strDate+='July';
+                    break;
+                case 8:
+                    strDate+='August';
+                    break;
+                case 9:
+                    strDate+='September';
+                    break;
+                case 10:
+                    strDate+='October';
+                    break;
+                case 11:
+                    strDate+='November';
+                    break;
+                case 12:
+                    strDate+='December';
+                    break;
+            }
+            strDate+=' ';
+            switch (this.getDay()){
+                case 1:
+                   strDate+= 'first';
+                   break;
+                case 2:
+                    strDate+= 'second';
+                    break;
+                case 3:
+                    strDate+= 'third';
+                    break;
+                case 4:
+                    strDate+= 'fourth';
+                    break;
+                case 5:
+                    strDate+= 'fifth';
+                    break;
+                case 6:
+                    strDate+= 'sixth';
+                    break;
+                case 7:
+                    strDate+= 'seventh';
+                    break;
+                case 8:
+                    strDate+= 'eighth';
+                    break;
+                case 9:
+                    strDate+= 'ninth';
+                    break;
+                case 10:
+                    strDate+= 'tenth';
+                    break;
+                case 11:
+                    strDate+= 'eleventh';
+                    break;
+                case 12:
+                    strDate+= 'twelve';
+                    break;
+                case 13:
+                    strDate+= 'thirteenth';
+                    break;
+                case 14:
+                    strDate+= 'fourteenth';
+                    break;
+                case 15:
+                    strDate+= 'fifteenth';
+                    break;
+                case 16:
+                    strDate+= 'sixteenth';
+                    break;
+                case 17:
+                    strDate+= 'seventeenth';
+                    break;
+                case 18:
+                    strDate+= 'eighteenth';
+                    break;
+                case 19:
+                    strDate+= 'nineteenth';
+                    break;
+                case 20:
+                    strDate+= 'twentieth';
+                    break;
+                case 21:
+                    strDate+= 'twenty first';
+                    break;
+                case 22:
+                    strDate+= 'twenty second';
+                    break;
+                case 23:
+                    strDate+= 'twenty third';
+                    break;
+                case 24:
+                    strDate+= 'twenty fourth';
+                    break;
+                case 25:
+                    strDate+= 'twenty fifth';
+                    break;
+                case 26:
+                    strDate+= 'twenty sixth';
+                    break;
+                case 27:
+                    strDate+= 'twenty seventh';
+                    break;
+                case 28:
+                    strDate+= 'twenty eighth';
+                    break;
+                case 29:
+                    strDate+= 'twenty ninth';
+                    break;
+                case 30:
+                    strDate+= 'thirtieth';
+                    break;
+                case 31:
+                    strDate+= 'thirty first';
+                    break;
+            }
+            document.write(`${strDate}`);
+        }
+    }
+    let dateObj=new ExtendedDate();
+    dateObj.print();
+
+</script>
+</body>
+</html>
