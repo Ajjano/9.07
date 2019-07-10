@@ -191,7 +191,99 @@
     // document.write(ToAbr('cascading style sheets'));
 
     //6
+    function ConcatStrings(){
+        let res='';
+        for(let i in arguments){
+            res+=(arguments[i]+' ');
+        }
+        return res;
+    }
 
+        // document.write(ConcatStrings('hello', 'oggy.','What do you do now?'));
+
+    //7
+    function Calculator(str) {
+        let index=str.search(/[+,-,/,*]/)
+        let sign=str[index];
+        let first=parseInt(str.substr(0,index));
+        let second=parseInt(str.substr(index+1));
+        switch(sign){
+            case '+':
+                return first+second;
+            case '-':
+                return first-second;
+            case '*':
+                return first*second;
+            case '/':
+                return first/second;
+        }
+
+    }
+    // document.write(`25/5=${Calculator('25/5')}`);
+
+    //8
+    function DomenInfo(address) {
+        let domen, protocol, path;
+        let index=0;
+        for (let i=0;i<2;i++){
+            if(i==0){
+                index=address.search('://');
+                protocol=address.substr(0, index);
+            }
+            else{
+                let temp=index;
+                index=address.indexOf('/', index+3);
+                domen=address.substr(temp+3, index-(temp+3));
+                path=address.substr(index);
+            }
+        }
+
+        document.write(`protocol: ${protocol}; domen: ${domen}; path: ${path}`);
+    }
+
+    // DomenInfo('https://itstep.org/ua/about');
+
+    //9
+    function StringArray(str) {
+        let index=0;
+        let arr=[];
+        while(index!=-1){
+            let temp=index;
+            index=str.indexOf('/', index);
+            if(index!=-1) {
+                arr.push(str.substr(temp, index - temp));
+            }
+        }
+        return arr;
+    }
+
+    // document.write(StringArray('10/08/2020'));
+
+    //10
+    function Template() {
+        let str='';
+        let mainStr=arguments[0];
+        let index=0;
+        let i=1;
+        while(index !=-1){
+            let temp=index;
+
+            if(index!=-1) {
+               if(i==1){
+                   index=mainStr.indexOf('%',temp);
+                   str += (mainStr.substr(temp, (index - temp)) + arguments[i++]);
+               }
+               else {
+                   index = mainStr.indexOf('%', temp + 2);
+                   if(i<arguments.length) {
+                       str += (mainStr.substr(temp + 2, (index - temp - 2)) + arguments[i++]);
+                   }
+               }
+            }
+        }
+        return str;
+    }
+    document.write(Template('Today is %1 %2.%3.%4.%5', 'Monday', 10,8, 2020,454));
 
 </script>
 </body>
