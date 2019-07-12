@@ -174,8 +174,53 @@
         }
     }
     let dateObj=new ExtendedDate();
-    dateObj.print();
+    // dateObj.print();
 
+    //3
+    class Employee{
+        constructor(name, salary){
+            this.name=name;
+            this.salary=salary;
+        }
+    }
+
+    class EmpTable{
+        constructor(emplArr){
+            this.emplArr=emplArr;
+        }
+        getHtml(){
+            let htmlDoc='<table><tr><th>Name</th><th>Salary</th></tr>';
+            for(let i in emplArr){
+                htmlDoc+=`<tr><td>${emplArr[i].name}</td><td>${emplArr[i].salary}</td></tr>`
+            }
+            return htmlDoc+='</table>';
+        }
+    }
+
+    let emplArr=[new Employee('Ivan', 12500), new Employee('Vasiliy',15000)];
+    let emplTable=new EmpTable(emplArr);
+    // document.write(emplTable.getHtml());
+
+    //4
+    class StyleEmpTable extends EmpTable{
+        constructor(){
+            super();
+            this.styleStr;
+        }
+        getStyles(style){
+            this.styleStr='color: red; font-size:20px;';
+        }
+        getHtml(){
+            let htmlDoc=`<table style="${this.styleStr}"><tr><th>Name</th><th>Salary</th></tr>`;
+            for(let i in emplArr){
+                htmlDoc+=`<tr><td>${emplArr[i].name}</td><td>${emplArr[i].salary}</td></tr>`
+            }
+            return htmlDoc+='</table>';
+        }
+    }
+    let stTable=new StyleEmpTable(emplArr);
+    stTable.getStyles('color: red; font-size:20px;');
+    document.write(stTable.getHtml());
 </script>
 </body>
 </html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*Задание 1: Дан массив с элементами 'Привет, ', 'мир' и '!'. Необходимо вывести на экран фразу 'Привет, мир!'.*/
+        let array=['Hello', 'world', '!'];
+        // document.write(array[0].concat(', ', array[1], array[2]));
+
+        /*Задание 2: Решим немного другую задачу: дан массив с элементами 'Привет, ', 'мир' и '!'.
+            Необходимо записать в переменную text фразу 'Привет, мир!',
+            а затем вывести на экран содержимое этой переменной.*/
+        let text=array[0].concat(', ', array[1], array[2]);
+        // document.write(text);
+
+        /*Задание 3: Задача. Дан массив ['Привет, ', 'мир', '!'].
+            Необходимо записать в нулевой элемент этого массива слово 'Пока, '
+            (то есть вместо слова 'Привет, ' будет 'Пока, ').*/
+        array[0]='Bye';
+        text=array[0].concat(', ', array[1], array[2]);
+        // document.write(text);
+
+        /*Задание 4: Создайте массив arr с элементами 2, 5, 3, 9. Умножьте первый элемент массива на второй,
+             а третий элемент на четвертый. Результаты сложите, присвойте переменной result. Выведите на экран
+             значение этой переменной.*/
+        let arr=[2,5,3,9];
+        let result=arr[0]*arr[1]+arr[2]*arr[3];
+        // document.write(result);
+
+       /* Задание 5: Написать функцию, определяющую среднее арифметическое элементов передаваемого ей массива.*/
+       function Average(arr) {
+           let sum=0;
+           for(let i in arr){
+               sum+=arr[i];
+           }
+           return sum/arr.length;
+
+       }
+       // document.write(Average(arr));
+
+        /*Задание 6: Написать функцию, определяющую количество положительных, отрицательных и нулевых элементов
+        передаваемого ей массива.*/
+        let newArr=[0,2,1,5,-7,-9,0,5];
+        // (function ValueOfSign(arr) {
+        //     let zeros=0, pos=0, neg=0;
+        //     for(let i in arr){
+        //         if(arr[i]==0){
+        //             zeros++;
+        //         }else if(arr[i]>0){
+        //             pos++;
+        //         }else{
+        //             neg++;
+        //         }
+        //     }
+        //     document.write(`zeros: ${zeros}, positives: ${pos}, negatives: ${neg}`);
+        // }(newArr));
+
+
+        /*Задания повышенной сложности*/
+        /*Задание 1: В одномерном массиве, заполненном случайными числами, определить
+        минимальный и максимальный элементы*/
+        let randArr=[];
+        randArr.length=10;
+        randArr[0]=Math.floor(Math.random()*100);
+        let min=randArr[0];
+        let max=0;
+
+        for (let i =0; i<randArr.length;i++){
+            if(i!=0) {
+                randArr[i] = Math.floor(Math.random() * 100);
+            }
+            // document.write(randArr[i]+'<br>');
+            if(randArr[i]>max){
+                max=randArr[i];
+            }
+            if(randArr[i]<min){
+                min=randArr[i];
+            }
+        }
+        // document.write(`Max - ${max}, min - ${min}`);
+
+        /*Задание 2: Пользователь вводит прибыль фирмы за год (12 месяцев). Затем пользователь
+        вводит диапазон (например, 3 и 6 – поиск между 3-м и 6-м месяцем). Необходимо определить
+        месяц, в котором прибыль была максимальна и месяц, в котором прибыль была минимальна с
+        учетом выбранного диапазона.*/
+        // let income=[];
+        // for(let i=0;i<12;i++){
+        //     income.push(parseInt(prompt(`Enter an income for ${i+1} month: `)));
+        // }
+        // let range=prompt('Enter two month with divider ";": ');
+        // range=range.split(';');
+        // let maxIncome=0, minIncome=income[range[0]];
+        // let minMonth=range[1], maxMonth=range[0];
+        // for(let i=range[0];i<=range[1];i++){
+        //     if(income[i]>maxIncome){
+        //         maxIncome=income[i];
+        //         maxMonth=i;
+        //     }
+        //     if(income[i]<minIncome){
+        //         minIncome=income[i];
+        //         minMonth=i;
+        //     }
+        // }
+        // document.write(`Max income in ${maxMonth} month: ${maxIncome}; min income in ${minMonth} month: ${minIncome}`);
+
+        /*Задание 3: В одномерном массиве, состоящем из N вещественных чисел вычислить:
+        • Сумму отрицательных элементов.
+        • Произведение элементов, находящихся между min и max элементами.
+        • Произведение элементов с четными номерами.
+        • Сумму элементов, находящихся между первым и последним отрицательными
+        элементами.*/
+        let arrFloat=[];
+        let len=prompt('Enter length of array: ');
+        let negatives=0;
+        let multEvens=1;
+        let fisrtNeg,lastNeg,isFisrt=false;
+        for(let i=0;i<len;i++){
+            arrFloat[i]=Math.random() * (100+100)-100;
+            //document.write(arrFloat[i] + '<br>');
+            if(arrFloat[i]<0){
+                negatives+=arrFloat[i];
+                if(!isFisrt){
+                    fisrtNeg=i;
+                    isFisrt=true;
+                }else{
+                    lastNeg=i;
+                }
+            }
+            if(i%2==0){
+                multEvens*=arrFloat[i];
+            }
+
+        }
+
+        let minFloat=arrFloat[0],
+            maxFloat=arrFloat[0],
+            minIndex=0,
+            maxIndex=0;
+
+        for(let i=0;i<arrFloat.length;i++){
+            if(arrFloat[i]>maxFloat){
+                maxFloat=arrFloat[i];
+                maxIndex=i;
+            }
+            if(arrFloat[i]<minFloat){
+                minFloat=arrFloat[i];
+                minIncome=i;
+            }
+        }
+
+        let fistIndex=(minIndex<maxIndex)?minIndex:maxIndex;
+        let secondIndex=(minIndex>maxIndex)?minIndex:maxIndex;
+        let multBetweenMinMax=1;
+        for(let i=fistIndex;i<=secondIndex;i++){
+            multBetweenMinMax+=arrFloat[i];
+        }
+
+        let sumBetweenFirstAndLastNeg=0;
+        if(fisrtNeg!=undefined&&lastNeg!=undefined){
+            for (let i=fisrtNeg;i<=lastNeg;i++){
+                sumBetweenFirstAndLastNeg+=arrFloat[i];
+            }
+        }
+        // document.write(`• Сумму отрицательных элементов. ${negatives} <br>
+        // • Произведение элементов, находящихся между min и max элементами. ${multBetweenMinMax} <br>
+        // • Произведение элементов с четными номерами. ${multEvens} <br>
+        // • Сумму элементов, находящихся между первым и последним отрицательными элементами. ${sumBetweenFirstAndLastNeg}`);
+
+
+
+        /*Задание 4:
+        Написать программу, копирующую последовательно элементы одного массива размером 10
+        элементов в 2 массива размером 5 элементов каждый.*/
+        for(let i=0;i<10;i++){
+            newArr[i]=Math.floor(Math.random()*100);
+        }
+
+        let arr1=[], arr2=[];
+        arr1.length=arr2.length=5;
+
+        for (let i=0;i<10;i++){
+            if(i<5){
+                arr1[i]=newArr[i];
+            }
+            else {
+                arr2[i-5]=newArr[i];
+            }
+        }
+
+        // document.write(`Primary arr: ${newArr} <br>
+        //                 fisrt arr: ${arr1} <br>
+        //                 second arr: ${arr2}`);
+
+        /*Задание 5:
+        Напишите программу, которая выполняет поэлементную сумму двух массивов и результат
+        заносит в третий массив.*/
+        let arr3=[];
+        for (let i=0;i<arr1.length;i++){
+            arr3.push(arr1[i]+arr2[i]);
+        }
+
+        document.write(`third arr: ${arr3}`);
+    </script>
+</body>
+</html>

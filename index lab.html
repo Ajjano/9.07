@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let arr=[64, 46, 70, 78, 12, 25, 8, 95, 92, 25, 4, 3, 67, 65, 18, 96, 20, 49, 5, 48, 38, 37, 77, 44, 26, 59, 78, 16, 94, 90];
+
+        for(let i in arr){
+            document.write(`Bubble solution #${i}: ${arr[i]}<br>`);
+        }
+
+        document.write(`Bubble test: ${arr.length}<br>`);
+        document.write(`Bubble max: ${Math.max.apply(null,arr)}<br>`);
+        let max=Math.max.apply(null,arr);
+        let arrScore=[];
+        for (let i in arr){
+            if(arr[i]==max){
+                arrScore.push(i);
+            }
+        }
+        document.write(`Solution with highest score: `)
+        for (let i in arrScore){
+            document.write(`#${arrScore[i]}`);
+        }
+
+        //2
+        let arr1=['cat','doggy','bear', 'hamster'];
+        let arr2=['kills', 'kisses', 'eats','licks'];
+        let arr3=['human', 'other', 'friend', 'ball'];
+        let arr4=['beautiful', 'awful','nice', 'nasty'];
+
+        let color=['coral', 'grey','black', 'magenta'];
+
+        function RandomPhrase() {
+            let phrase=`<span style="color: ${color[Math.floor(Math.random() * color.length)]}">${
+                arr1[Math.floor(Math.random() * arr1.length)]}</span>
+                <span style="color: ${color[Math.floor(Math.random() * color.length)]}">${arr2[Math.floor(Math.random() * arr2.length)]} </span>
+                <span style="color: ${color[Math.floor(Math.random() * color.length)]}"> ${arr3[Math.floor(Math.random() * arr3.length)]} </span>
+                <span style="color: ${color[Math.floor(Math.random() * color.length)]}">${arr4[Math.floor(Math.random() * arr4.length)]}</span><br>`;
+            return phrase;
+        }
+        setInterval(()=>document.write(RandomPhrase()),1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1
+    function Circle() {
+        let _radius;
+        this.getRadis=function () {
+            return this._radius;
+        }
+        this.setRadius=function (radius) {
+            this._radius=radius;
+        }
+        this.getDiameter=function () {
+            return Math.pow(this._radius,2);
+        }
+        this.SquareOfCircle=function () {
+            return Math.PI*Math.pow(this._radius,2);
+        }
+        this.LengthOfCircle=function(){
+            return 2*Math.PI*this._radius;
+        }
+    }
+
+    // let crcl=new Circle();
+    // crcl.setRadius(12);
+    // document.write(`Radius: ${crcl.getRadis()}<br>`);
+    // document.write(`Diameter: ${crcl.getDiameter()}<br>`);
+    // document.write(`Square: ${crcl.SquareOfCircle()}<br>`);
+    // document.write(`Length: ${crcl.LengthOfCircle()}<br>`);
+
+    //2
+    function HtmlElement(){
+        let _tag,
+            _isSelfClosingTag,
+            _text,
+            _atribArr,
+            _styleArr,
+            _nestedTagsArr;
+        let htmlStr='';
+        this.RootTag=function (rootTag, text) {
+            this._tag=rootTag;
+            this._isSelfClosingTag=false;
+            this._text=text;
+            if(this._text==undefined){
+                this._text='';
+            }
+            htmlStr+=`<${this._tag}> ${this._text}</${this._tag}> `;
+        }
+        this.setAtributes=function (atrArr) {
+            this._atribArr=atrArr;
+            let index=htmlStr.indexOf('>');
+            let temp='';
+            for (let i in this._atribArr){
+                temp+=`${this._atribArr[i]} `;
+            }
+            htmlStr=htmlStr.substr(0, index)+' '+temp+htmlStr.substr(index);
+        }
+        this.setStyle=function (styleArr) {
+            this._styleArr=styleArr;
+
+            let index=htmlStr.indexOf('>');
+            let temp='style="';
+            for (let i in this._styleArr){
+                temp+=`${this._styleArr[i]}; `;
+            }
+            temp+='"';
+            htmlStr=htmlStr.substr(0, index)+' '+temp+htmlStr.substr(index);
+        }
+        // this.AddNestedElementInBack=function (tag,isSelfClosingTag,text,atribArr,styleArr,nestedTagsArr) {
+        //     this._tag=tag;
+        //     this._isSelfClosingTag=isSelfClosingTag;
+        //     this._text=text;
+        //     this._atribArr=atribArr;
+        //     this._styleArr=styleArr;
+        //     this._nestedTagsArr=nestedTagsArr;
+        //
+        //     let indexMainTag=htmlStr.indexOf('>');
+        //     let temp=`<${this._tag}></${this._tag}>`;
+        //     let index=temp.indexOf('>');
+        //     let temp2='';
+        //
+        //     for (let i in _atribArr){
+        //         temp2+=`${this._atribArr[i]} `;
+        //     }
+        //
+        //     if(this._styleArr.length!=0){
+        //         temp2+=' style="';
+        //     }
+        //
+        //     for (let i in this._styleArr){
+        //         temp2+=`${this._styleArr[i]}; `;
+        //     }
+        //     temp2+='"';
+        //     temp=temp.substr(0, index)+' '+temp2+temp.substr(index);
+        //
+        //     temp2='';
+        //     for(let i in this._nestedTagsArr){
+        //         temp2+='<';
+        //         for(let x in this._nestedTagsArr[i]){
+        //             temp2+=`${this._nestedTagsArr[i][x] }`;
+        //         }
+        //         temp2
+        //     }
+        //
+        //     htmlStr=htmlStr.substr(0, indexMainTag+1)+temp+htmlStr.substr(indexMainTag+1);
+        //
+        // }
+        this.AddNewTag=function(tagArr, nested, text){
+            this.tagArr=tagArr;
+            this.nested=nested;
+            this._text=text;
+
+            let index=0, i=0;
+            while(i<this.nested.length){
+                if(i<this.nested.length) {
+                    index = htmlStr.indexOf('<'+this.nested[i], index);
+                    index=htmlStr.indexOf('>', index+1);
+                }
+                i++;
+            }
+            let temp=`<`;
+            for(let i=0;i<this.tagArr.length;i++){
+                temp+=`${this.tagArr[i]} `;
+
+            }
+            if(this._text!=undefined) {
+                temp += `>${this._text} </${tagArr[0]}>`;
+            }
+            else {
+                temp += `></${tagArr[0]}>`;
+            }
+
+            htmlStr=htmlStr.substr(0, index+1)+temp+htmlStr.substr(index+1);
+
+        }
+        this.CopyTag=function () {
+            let firstIn=htmlStr.indexOf('>');
+            let lastIn=htmlStr.lastIndexOf('</div>');
+            let newTemp=htmlStr.substr(firstIn+1, lastIn);
+            htmlStr=htmlStr.substr(0, lastIn)+newTemp+htmlStr.substr(lastIn);
+        }
+        this.getHtml=function () {
+            return htmlStr;
+        }
+
+    }
+    let htmlElement=new HtmlElement();
+    htmlElement.RootTag('div');
+    htmlElement.setAtributes(['id="wrapper"']);
+    htmlElement.AddNewTag(['div', 'style = "width: 300px; margin: 10px;"'], ['div']);
+    htmlElement.AddNewTag(['p', 'style = "text-align: justify;"'], ['div', 'div'],'Asperiores autem enim iure maxime molestiae perspiciatis, provident quod sed. Doloremque iure neque nihil odit\n' +
+        '        possimus quod sapiente. Amet cupiditate dolorem dolorum ea error inventore minus modi perferendis quos vitae!');
+    htmlElement.AddNewTag(['img', 'style = "width: 100%"', 'src="lipsum.jpg"', 'alt="Lorem Ipsum"'], ['div', 'div']);
+    htmlElement.AddNewTag(['h3'], ['div', 'div'], 'What is Lorem Ipsum?');
+    htmlElement.AddNewTag(['a', 'href="#"', 'target="_blank"'], ['div', 'div', 'p'], 'More...');
+    htmlElement.CopyTag();
+    // document.write(htmlElement.getHtml());
+
+
+    //3
+    class CssClass{
+        constructor(nameCss){
+            this.nameCss=nameCss;
+            this.text='<style>';
+        }
+        deleteStyle(){
+            this.styleArr=undefined;
+            this.setStyle();
+        }
+        setStyle(){
+            if(this.nameCss!=undefined){
+                for(let i = 0; i<this.nameCss.length;i++){
+                    for(let n=0;n<this.nameCss[i].length;n++){
+                        if(n==0){
+                            this.text+=`.${this.nameCss[i][n]}{`;
+                        }
+                        else {
+                            this.text += `${this.nameCss[i][n]}`;
+                        }
+                    }
+                    this.text+='}';
+                }
+                this.text+='</style>';
+            }
+        }
+        ReturnText(){
+            return this.text;
+        }
+    }
+
+    let styleArr=new CssClass([['wrap','display: flex;'],['block', 'width: 300px; ', 'margin: 10px'], ['img','width: 100%'], ['text', 'text-align: justify']]);
+    styleArr.setStyle();
+    // document.write(styleArr.ReturnText());
+
+    //4
+    class HtmlBlock{
+        constructor(styleArr, htmlElem){
+            this.styleAr=styleArr;
+            this.htmlElement=htmlElem;
+        }
+        getCode(){
+            let txt= this.styleAr.ReturnText()+this.htmlElement.getHtml();
+            return txt;
+        }
+    }
+    let htmlElement1=new HtmlElement();
+    htmlElement1.RootTag('div');
+    htmlElement1.setAtributes(['id="wrapper"', 'class="wrapp"']);
+    htmlElement1.AddNewTag(['div', 'class="block"'], ['div']);
+    htmlElement1.AddNewTag(['p', 'class="text"'], ['div', 'div'],'Asperiores autem enim iure maxime molestiae perspiciatis, provident quod sed. Doloremque iure neque nihil odit\n' +
+        '        possimus quod sapiente. Amet cupiditate dolorem dolorum ea error inventore minus modi perferendis quos vitae!');
+    htmlElement1.AddNewTag(['img', 'class="img"','src="#"', 'alt="Lorem Ipsum"'], ['div', 'div']);
+    htmlElement1.AddNewTag(['h3'], ['div', 'div'], 'What is Lorem Ipsum?');
+    htmlElement1.AddNewTag(['a', 'href="#"', 'target="_blank"'], ['div', 'div', 'p'], 'More...');
+    htmlElement1.CopyTag();
+    let htmlBlock=new HtmlBlock(styleArr, htmlElement1);
+    document.write(htmlBlock.getCode());
+
+</script>
+</body>
+</html>

@@ -1,48 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<meta charset="UTF-8">
+	<title>Java Script Intro</title>
 </head>
+<style>
+	
+</style>
 <body>
-    <script>
-        let arr=[64, 46, 70, 78, 12, 25, 8, 95, 92, 25, 4, 3, 67, 65, 18, 96, 20, 49, 5, 48, 38, 37, 77, 44, 26, 59, 78, 16, 94, 90];
+	<script>
+		function User(name) {
+			this.name = name;
+		}
+		let tom = new User('Tom');
+		let biba = new User('Biba');
+		let boba = new User('Boba');
 
-        for(let i in arr){
-            document.write(`Bubble solution #${i}: ${arr[i]}<br>`);
-        }
+		function display(exp, age) {
+			console.log(exp, age, this.name);
+		}
 
-        document.write(`Bubble test: ${arr.length}<br>`);
-        document.write(`Bubble max: ${Math.max.apply(null,arr)}<br>`);
-        let max=Math.max.apply(null,arr);
-        let arrScore=[];
-        for (let i in arr){
-            if(arr[i]==max){
-                arrScore.push(i);
-            }
-        }
-        document.write(`Solution with highest score: `)
-        for (let i in arrScore){
-            document.write(`#${arrScore[i]}`);
-        }
+		display(2, 35);
+		display.call(tom, 2, 25);
+		display.call(biba, 2, 25);
+		display.call(boba, 2, 25);
+		display.call(null, 2, 25);
 
-        //2
-        let arr1=['cat','doggy','bear', 'hamster'];
-        let arr2=['kills', 'kisses', 'eats','licks'];
-        let arr3=['human', 'other', 'friend', 'ball'];
-        let arr4=['beautiful', 'awful','nice', 'nasty'];
+		display.apply(tom, [2, 25]);
+		display.apply(biba, [2, 25]);
+		display.apply(boba, [2, 25]);
 
-        let color=['coral', 'grey','black', 'magenta'];
+		console.log(Math.max(24, 45, 56));
+		console.log(Math.max.call(null, 24, 45, 56));
+		let bubles = [24, 45, 56];
+		console.log(Math.max.apply(null, bubles));
 
-        function RandomPhrase() {
-            let phrase=`<span style="color: ${color[Math.floor(Math.random() * color.length)]}">${
-                arr1[Math.floor(Math.random() * arr1.length)]}</span>
-                <span style="color: ${color[Math.floor(Math.random() * color.length)]}">${arr2[Math.floor(Math.random() * arr2.length)]} </span>
-                <span style="color: ${color[Math.floor(Math.random() * color.length)]}"> ${arr3[Math.floor(Math.random() * arr3.length)]} </span>
-                <span style="color: ${color[Math.floor(Math.random() * color.length)]}">${arr4[Math.floor(Math.random() * arr4.length)]}</span><br>`;
-            return phrase;
-        }
-        setInterval(()=>document.write(RandomPhrase()),1000);
-    </script>
+		// shift - извлекает и удаляет первый элемент массива
+		let firstElemRemoved = bubles.shift();
+		console.log(firstElemRemoved, bubles);
+
+		//unshift - добавляет элемент в начало масива
+		bubles.unshift(firstElemRemoved);
+		console.log(bubles);
+		//splice - удаление по индексу
+		bubles.splice(1, 1);
+		console.log(bubles);
+
+		//concat = обьединение масивов
+		let arr = [90, 23, 90, 15];
+		bubles = bubles.concat(arr);
+		console.log(bubles);
+		console.log(bubles.join(', '));
+
+		bubles.sort();
+		console.log(bubles);
+
+		bubles.sort().reverse();
+		console.log(bubles);
+
+
+		//every();
+		//some();
+		// let result = bubles.some(function (value, index, arr) {
+		// 	return value >= 90;
+		// });
+		let result = bubles.every(function (value, index, arr) {
+			return value >= 18;
+		});
+
+		console.log(result);
+
+
+		let maxscores = [];
+		//filter
+		// bubles = bubles.filter(function (value, index, arr) {
+		// 	if (value == Math.max.apply(null, arr)) {
+		// 		maxscores.push(index);
+		// 	}
+		// 	return value == Math.max.apply(null, arr);
+		// });
+
+		console.log(bubles);
+		console.log(maxscores);
+
+		bubles.forEach(function (value, index, arr) {
+			console.log(`#${index}, value = ${value}`);
+		});		
+
+
+
+	</script>
 </body>
 </html>
